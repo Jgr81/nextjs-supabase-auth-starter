@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Box, Button, TextField, CircularProgress, Alert } from '@mui/material'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { usePasswordValidation } from '@/lib/hooks/usePasswordValidation'
 
 export const ResetPasswordForm = () => {
@@ -11,6 +11,7 @@ export const ResetPasswordForm = () => {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { isValid } = usePasswordValidation(password)
+  const supabase = createClientComponentClient()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -30,17 +31,10 @@ export const ResetPasswordForm = () => {
 
     try {
       const { error: updateError } = await supabase.auth.updateUser({
-        password: password,
+        password: password
       })
 
       if (updateError) throw updateError
-
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: (await supabase.auth.getUser()).data.user?.email || '',
-        password: password,
-      })
-
-      if (signInError) throw signInError
 
       router.push('/dashboard')
     } catch (err) {

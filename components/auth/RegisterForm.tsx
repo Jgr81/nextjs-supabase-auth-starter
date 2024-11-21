@@ -14,8 +14,7 @@ import {
 import { Check, Close } from '@mui/icons-material'
 import { useRouter } from 'next/navigation'
 import NextLink from 'next/link'
-import { supabase } from '@/lib/supabase'
-import { useAuth } from '@/lib/context/auth'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { usePasswordValidation } from '@/lib/hooks/usePasswordValidation'
 
 export const RegisterForm = () => {
@@ -25,14 +24,8 @@ export const RegisterForm = () => {
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
-  const { user } = useAuth()
+  const supabase = createClientComponentClient()
   const { validations, isValid } = usePasswordValidation(password)
-
-  // Redirect if already logged in
-  if (user) {
-    router.push('/dashboard')
-    return null
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,28 +39,32 @@ export const RegisterForm = () => {
     setIsLoading(true)
 
     try {
-        // Only handle signup, profile creation will be automatic
-        const { error: signUpError } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              full_name: fullName,
-            },
-            emailRedirectTo: `${window.location.origin}/auth/callback`,
+      console.log('🔵 Registration attempt started')
+      const { error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: fullName,
           },
-        })
-  
-        if (signUpError) throw signUpError
-  
-        router.push('/auth/verify-email')
-      } catch (err) {
-        console.error('Registration error:', err)
-        setError(err instanceof Error ? err.message : 'An error occurred during registration')
-      } finally {
-        setIsLoading(false)
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+
+      if (signUpError) {
+        console.log('🔴 Registration error:', signUpError)
+        throw signUpError
       }
+
+      console.log('🟢 Registration successful')
+      router.push('/auth/verify-email')
+    } catch (err) {
+      console.error('Registration error:', err)
+      setError(err instanceof Error ? err.message : 'An error occurred during registration')
+    } finally {
+      setIsLoading(false)
     }
+  }
 
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate>

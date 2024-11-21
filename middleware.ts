@@ -1,58 +1,38 @@
-import { createClient } from '@supabase/supabase-js'
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-  
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      auth: {
-        persistSession: true,
-        storageKey: 'auth-token',
-        storage: {
-          getItem: (key: string): string | null => {
-            return req.cookies.get(key)?.value || null
-          },
-          setItem: (key: string, value: string) => {
-            res.cookies.set({
-              name: key,
-              value,
-              maxAge: 3600,
-              path: '/'
-            })
-          },
-          removeItem: (key: string) => {
-            res.cookies.delete(key)
-          }
-        }
-      }
-    }
-  )
+  const supabase = createMiddlewareClient({ req, res })
 
+  // Refresh session if it exists
   const { data: { session } } = await supabase.auth.getSession()
 
-  console.log('🔍 Middleware Check:', {
-    timestamp: new Date().toISOString(),
+  // Log for debugging
+  console.log('Middleware check:', {
     path: req.nextUrl.pathname,
-    hasSession: !!session,
-    sessionUser: session?.user?.email,
-    cookies: req.cookies.getAll().map(c => c.name)
+    hasSession: !!session
   })
 
+  // Protect dashboard and api routes
   if (!session && req.nextUrl.pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/auth/login', req.url))
+    const redirectUrl = new URL('/auth/login', req.url)
+    return NextResponse.redirect(redirectUrl)
   }
 
+  // Redirect logged-in users away from auth pages
   if (session && req.nextUrl.pathname.startsWith('/auth/')) {
-    return NextResponse.redirect(new URL('/dashboard', req.url))
+    const redirectUrl = new URL('/dashboard', req.url)
+    return NextResponse.redirect(redirectUrl)
   }
 
   return res
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/auth/:path*']
+  matcher: [
+    '/dashboard/:path*',
+    '/auth/:path*'
+  ]
 } 

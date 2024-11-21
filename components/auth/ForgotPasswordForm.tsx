@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Box, Button, TextField, CircularProgress, Alert, Link } from '@mui/material'
 import NextLink from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export const ForgotPasswordForm = () => {
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const supabase = createClientComponentClient()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,6 +25,7 @@ export const ForgotPasswordForm = () => {
 
       setSuccess(true)
     } catch (err) {
+      console.error('Reset error:', err)
       setError(err instanceof Error ? err.message : 'An error occurred')
     } finally {
       setIsLoading(false)
@@ -39,7 +41,8 @@ export const ForgotPasswordForm = () => {
       )}
       {success && (
         <Alert severity="success" sx={{ mb: 2 }}>
-          Check your email for a password reset link.
+          If an account exists with this email, you will receive a password reset link shortly. 
+          Please check your inbox and spam folder. The email might take a few minutes to arrive.
         </Alert>
       )}
       <TextField
