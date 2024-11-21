@@ -1,0 +1,58 @@
+Project "Anduin"/
+├── .cache/
+├── .config/
+├── .next/
+├── .upm/
+├── cache/
+├── components/
+│   └── auth/                  # Authentication components
+│       ├── LoginForm.tsx      # Handles user login
+│       ├── RegisterForm.tsx   # Handles user registration
+│       ├── ForgotPasswordForm.tsx  # Password reset request
+│       └── ResetPasswordForm.tsx   # Password reset completion
+├── database/                  # Database-related files
+│   ├── schema.sql            # Database tables and structure
+│   ├── indexes.sql           # Database indexes
+│   ├── rls_policies.sql      # Row Level Security policies
+│   ├── views.sql             # Database views
+│   └── triggers.sql          # Database triggers
+├── docs/                      # Project documentation
+│   ├── Roadmap.md
+│   ├── Techstack.txt
+│   ├── User-Stories.txt
+│   └── project-structure.txt
+├── lib/                       # Utility functions and configurations
+│   ├── context/
+│   │   └── auth.tsx          # Authentication context provider
+│   ├── hooks/
+│   │   └── usePasswordValidation.ts  # Password validation hook
+│   └── supabase.ts           # Supabase client configuration
+├── pages/                     # Next.js pages
+│   ├── auth/                 # Authentication pages
+│   │   ├── callback.tsx      # Auth callback handler
+│   │   ├── forgot-password.tsx
+│   │   ├── login.tsx
+│   │   ├── register.tsx
+│   │   ├── reset-password.tsx
+│   │   └── verify-email.tsx
+│   ├── _app.tsx              # Next.js app wrapper
+│   ├── dashboard.tsx         # Protected dashboard page
+│   └── index.tsx             # Home page
+├── public/                    # Static assets
+├── styles/                    # Global styles
+│   ├── globals.css
+│   ├── Home.module.css
+│   └── theme.ts              # MUI theme configuration
+├── types/                     # TypeScript type definitions
+│   └── supabase.ts           # Supabase database types
+├── @.cursorrules             # Project coding guidelines
+├── .env.local                # Environment variables
+├── .eslintrc.json            # ESLint configuration
+├── .gitignore                # Git ignore rules
+├── .replit                   # Replit configuration
+├── next-env.d.ts             # Next.js TypeScript declarations
+├── next.config.js            # Next.js configuration
+├── package-lock.json         # NPM lock file
+├── package.json              # Project dependencies and scripts
+├── README.md                 # Project documentation
+└── tsconfig.json             # TypeScript configuration

@@ -1,0 +1,69 @@
+User Stories
+1. Company Management
+As an Admin, I want to create a new company profile so that I can start managing its budgeting process.
+As an Admin, I want to edit a company profile to update company information as needed.
+As an Admin, I want to delete a company profile to remove companies that are no longer active.
+As a User, I want to view a list of companies I have access to so that I can select the company to work on.
+2. Area Management
+As an Admin, I want to add business areas to a company so that I can organize the company's departments.
+As an Admin, I want to create sub-areas within a business area up to three levels deep so that I can represent the organizational hierarchy accurately.
+As an Admin, I want to edit or delete areas and sub-areas to keep the organizational structure up-to-date.
+As a User, I want to view the hierarchy of areas and sub-areas so that I can understand the company's structure.
+3. Product Management
+As an Admin, I want to add products associated with a company so that they can be included in budget planning.
+As an Admin, I want to edit product details to update information as needed.
+As an Admin, I want to delete products that are no longer relevant to keep the product list current.
+As a User, I want to view a list of products for a company so that I can select products for budgeting purposes.
+4. Budget Management
+Planned Budget Entry
+As a User, I want to create planned budget items by company, area, sub-area, and product so that I can forecast future expenses and revenues.
+As a User, I want to edit planned budget items to adjust forecasts based on new information.
+As a User, I want to delete planned budget items that are no longer applicable.
+As a User, I want to view all planned budget items to analyze the overall budget plan.
+Actual Data Import
+As a User, I want to upload actual budget data via CSV or Excel files so that I can compare it against the planned budget.
+As a User, I want to manage and edit imported actual data to correct any discrepancies.
+As a User, I want to view actual budget items alongside planned budget items to assess performance.
+5. Data Comparison
+As a User, I want to compare planned budget data with actual data to identify variances and analyze performance.
+As a User, I want to see visual representations (charts, graphs) of budget comparisons for easier interpretation.
+As a User, I want to generate reports on budget variances by company, area, or product to share with stakeholders.
+6. User Management
+Authentication
+As a Visitor, I want to sign up for an account so that I can access the application's features.
+As a User, I want to log in to my account to access my companies and budget data.
+As a User, I want to log out to secure my account when I'm done.
+As a User, I want to reset my password if I forget it so that I can regain access to my account.
+Default Admin Role
+As a User, I want to automatically become the Admin of a company I create so that I can manage its data and users.
+User Invitations and Permissions
+As an Admin, I want to invite users to my company so that they can collaborate on budgeting tasks.
+As an Admin, I want to assign roles (Admin, Contributor, Viewer) to users during the invitation process so that their permissions are clearly defined.
+As an Admin, I want to view a list of all users in my company along with their roles so that I can manage team access.
+As an Admin, I want to assign Admin privileges to other users so that they can help manage the company.
+As an Admin, I want to revoke Admin privileges or update a user's role if their responsibilities change.
+As an Admin, I want to prevent myself from being the only Admin of a company so that I can ensure a backup Admin exists.
+As the System, I want to block the last remaining Admin from removing themselves or downgrading their role so that the company always has administrative oversight.
+Role Clarity
+As a User, I want to view my assigned role within the company so that I understand what actions I can perform.
+As an Admin, I want to see which users are Admins so that I know who shares management responsibilities with me.
+7. Security and Access Control
+As the System, I want to enforce secure authentication and authorization so that only authorized users can access sensitive data.
+As a User, I want to access only the data and functionalities that my permissions allow so that sensitive information is protected.
+8. General User Interface
+As a User, I want an intuitive and responsive user interface so that I can navigate the application efficiently.
+As a User, I want to receive informative error messages so that I can understand and fix issues when they occur.
+9. Notifications and Alerts
+As a User, I want to receive notifications when I'm invited to a company so that I'm aware of new collaborations.
+As an Admin, I want to receive alerts when users accept invitations so that I can keep track of team onboarding.
+As a User, I want to receive alerts when actual data significantly deviates from the planned budget so that I can take corrective actions.
+10. Data Export and Reporting
+As a User, I want to export budget data and comparisons to CSV or PDF so that I can share reports with others.
+As a User, I want to generate customizable reports based on specific criteria (date range, areas, products) to meet reporting needs.
+11. Administrative Functions
+As an Admin, I want to manage user accounts (activate, deactivate) to maintain security and compliance.
+As an Admin, I want to audit user activities to monitor usage and detect any unauthorized actions.
+12. Future Enhancements
+As a User, I want to have access to analytics and advanced reporting capabilities to gain deeper insights into budget performance.
+As a User, I want to integrate the application with third-party accounting tools so that data synchronization is seamless.
+As a User, I want the application to support multiple languages so that it is accessible to a global team.

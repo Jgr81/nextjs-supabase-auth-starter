@@ -1,0 +1,33 @@
+This is the project structure of the project "Anduin"
+
+Project "Anduin"
+- .cache
+- .config
+- .next
+- .upm
+- cache
+- components / auth
+- database <-- schema.sql etc are in here
+- docs <-- some docs that interesting to the project ( I will also put the project structure there)
+-- @Roadmap.md this is our roadmap for the project we were working on Set up Project Environment already
+-- @Techstack.txt this is the representation of what tech-stack we will be using in the project, if you see any discrepancies to ACTUAL, than please highlight
+-- @User-Stories.txt this is an overview of all User Stories we want to fulfill with this project
+- lib
+- node_modules
+- pages
+- public
+- styles
+- types
+- @.cursorrules  please always use this as guidance for your answers
+- .env.local
+- eslintrc.json
+- .gitignore
+- .replit
+- .next-env.d.ts
+- .next-config.js
+- .package-lock.json
+- .package.json
+- . readme.md
+- .tsconfig.json
+
+And of course there are more files most of the folders that are Tech-Stack related and Programm-related. If you have questions, feel free to ask me.
